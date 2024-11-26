@@ -1,7 +1,7 @@
 [project]
 name = "oreum_mre_wholelife"
-version = "0.1.1"
-description = "Oreum Industries Survival Experiments"
+version = "0.1.2"
+description = "Oreum Industries MRE Whole-Life Insurance Simulator"
 readme = "README.md"
 license = {file = "LICENSE.md"}
 authors = [{ name = "Jonathan Sedar", email = "jonathan.sedar@oreum.io" },]
@@ -44,8 +44,8 @@ dev = [
     "ruff",
 ]
 # NOTE: separated out to allow Makefile dev to get from pypi (dev-js gets local)
-oreum_core_dev = [
-    "oreum_core>=0.9.8",  # the latest package using osx-arm64 Accelerate
+oreum_core_pypi = [
+    "oreum_core>=0.9.9",  # the latest package using osx-arm64 Accelerate
 ]
 
 [project.urls]
