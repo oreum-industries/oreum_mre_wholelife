@@ -1,21 +1,18 @@
 # README.md
 
-## Oreum Survival `oreum_mre_wholelife`
+## Oreum MRE Whole Life Insurance Simulator `oreum_mre_wholelife`
 
-Demonstrate Survival Regression Modelling using Bayesian inference and a
-Bayesian workflow, specifically using the `pymc` & `arviz` ecosystem.
+Minimum Reproducible Example: Simulate WholeLife Insurance Policies using a
+parameterised survival curve, and financial activities and investments.
 
+Closely related to Oreum Industries reference project
+[`oreum_survival`](https://github.com/oreum-industries/oreum_survival)
 
 [![Python](https://img.shields.io/badge/python-3.11-blue)](https://www.python.org)
 [![CI](https://github.com/oreum-industries/oreum_mre_wholelife/workflows/ci/badge.svg)](https://github.com/oreum-industries/oreum_mre_wholelife/actions/workflows/ci.yml)
-<!-- [![GitHub Release](https://img.shields.io/github/v/release/oreum-industries/oreum_mre_wholelife?display_name=tag&sort=semver)](https://github.com/oreum-industries/oreum_mre_wholelife/releases) -->
-
-[![code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![code style: flake8](https://img.shields.io/badge/code%20style-flake8-331188.svg)](https://flake8.pycqa.org/en/latest/)
-[![code style: isort](https://img.shields.io/badge/code%20style-isort-%231674b1?style=flat)](https://pycqa.github.io/isort/)
-[![code style: interrogate](https://raw.githubusercontent.com/oreum-industries/oreum_mre_wholelife/master/assets/img/interrogate_badge.svg)](https://pypi.org/project/interrogate/)
+[![code style: ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![code style: interrogate](https://raw.githubusercontent.com/oreum-industries/oreum_core/master/assets/img/interrogate_badge.svg)](https://pypi.org/project/interrogate/)
 [![code security: bandit](https://img.shields.io/badge/code%20security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
-
 
 
 ### Contents
@@ -47,7 +44,7 @@ This project **is not**:
 
 + Intended for public usage and will not be supported for public usage
 + Intended for contributions by anyone not an employee of Oreum Industries,
-  and unsolicitied contributions will not be accepted
+  and unsolicited contributions will not be accepted
 
 
 ### 1.2 Technical Overview
@@ -107,7 +104,7 @@ For local development on MacOS.
 
 ### 2.0 Pre-requisite installs via `homebrew`
 
-1. Install Homebrew, see instuctions at [https://brew.sh](https://brew.sh)
+1. Install Homebrew, see instructions at [https://brew.sh](https://brew.sh)
 2. Install `direnv`, `git`, `git-lfs`, `graphviz`, `zsh`
 
 ```zsh
@@ -208,7 +205,7 @@ Workflows to run a suite of automated tests for commits received at the origin
 #### 2.3.3 Git LFS
 
 We use [Git LFS](https://git-lfs.github.com) to store any large files alongside
-the repo. This can be useful to replicate exact environments dueing development
+the repo. This can be useful to replicate exact environments during development
 and/or for automated tests
 
 + This requires a local machine install
@@ -260,12 +257,10 @@ part of our CI process, prior to master branch merge.
 
 These include:
 
-+ [`black`](https://github.com/psf/black) - standardised Python linting
-+ [`flake8`](https://flake8.pycqa.org/en/latest/) - addtional PEP8 Python linting
-+ [`isort`](https://pycqa.github.io/isort/) - sort Python package imports
++ [`ruff`](https://docs.astral.sh/ruff/) - extremely fast standardised linting
+  and formatting, which replaces `black`, `flake8`, `isort`
 + [`interrogate`](https://pypi.org/project/interrogate/) - ensure complete Python
   docstrings
-+ [`sqlfluff`](https://www.sqlfluff.com) - standardised SQL linting
 + [`bandit`](https://github.com/PyCQA/bandit) - test for common Python security
   issues
 
@@ -277,7 +272,7 @@ We also run a suite of general tests pre-packaged in
 
 Where suitable, we break out commonly used functions and classes to module files
 under the `src/` directory - this gives clear, convenient and easier code
-control than when it's embedded insode notebooks. Note for clarity, that we
+control than when it's embedded inside notebooks. Note for clarity, that we
 don't compile this code or release separately to the project.
 
 
@@ -290,7 +285,7 @@ General best practices for naming / ordering / structure.
 Every Notebook is:
 
 + Fully executable end-to-end, with linear non-cyclic flow
-+ Living documentation with entensive text and plot-based explanation
++ Living documentation with extensive text and plot-based explanation
 + Named starting with a 3-digit reference with group-based ordering to
 indicate logical flow and dependencies, e.g:
   + `000` series: Overview, discussion, presentational documents
@@ -379,8 +374,8 @@ Dataset terminology / partitioning / purpose:
     + We might create predictions for individual datapoints or in bulk
     + _If_ the entities in the data evolve over time (e.g. a set of policies
       each with evolving premium payments and claim developments),
-      and _if_ the endogenous features dont evolve with time (they are static
-      not dynamic) then we can artifically create a Forecast dataset by
+      and _if_ the endogenous features don't evolve with time (they are static
+      not dynamic) then we can artificially create a Forecast dataset by
       extending the Working dataset forward in time.
 
 Further note:
@@ -390,7 +385,7 @@ Further note:
   model against a _known_ exogenous (target) value or forecast an _unknown_
   exogenous (target) value. So they can be used during Working or Forecasting.
 
-+ Strictly speaking, our Bayesian modelling workflow does not require us to
++ Strictly speaking, our Bayesian modeling workflow does not require us to
   evaluate the model on a Test/Holdout set because we can use in-sample
   Pareto-smoothed Leave-One-Out (LOO-PIT) cross-validation testing. This is more
   powerful, and lets us fit & evaluate the model using the full Working set.
