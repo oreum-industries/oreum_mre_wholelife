@@ -30,21 +30,12 @@ repos:
     hooks:
       - id: no-print-statements
         files: ^src/
-  - repo: https://github.com/psf/black  # black formatter, dont use black-jupyter, too annoying
-    rev: 24.10.0
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.8.0
     hooks:
-      - id: black
-        files: ^src/
-  - repo: https://github.com/PyCQA/isort  # isort sort imports
-    rev: 5.13.2
-    hooks:
-      - id: isort
-        files: ^src/
-  - repo: https://github.com/pycqa/flake8  # flake8 linter
-    rev: 7.1.1
-    hooks:
-      - id: flake8
-        files: ^src/
+      - id: ruff   # lint
+        args: [ --fix]
+      - id: ruff-format  # formatter
   - repo: https://github.com/pycqa/bandit  # basic security checks for python code
     rev: 1.7.10
     hooks:
@@ -59,9 +50,3 @@ repos:
         files: ^src/
         args: [--config, pyproject.toml]
         pass_filenames: false  # see https://github.com/econchick/interrogate/issues/60#issuecomment-1180262851
-  - repo: https://github.com/nbQA-dev/nbQA  # generalised notebook QA
-    rev: 1.9.1
-    hooks:
-      # - id: nbqa-black  # not yet
-      - id: nbqa-isort
-        additional_dependencies: [isort==5.10.1]
